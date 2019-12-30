@@ -1,0 +1,49 @@
+.bg-light {
+    background: rgba(212, 212, 212, 0.08);
+    /* border-radius: 3px; */
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+}
+  
+.card a {
+    text-decoration: none;
+}
+  
+.card img {
+    margin-bottom: 8px;
+}
+
+@media screen and (min-width: 40em) {
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .card {
+        flex: 0 1 calc(24% - 1em);
+        margin: 5px 5px;
+    }
+}
+
+@media screen and (min-width: 60em) {
+    .card {
+        flex: 0 1 calc(24% - 1em);
+        margin: 5px 5px;
+    }
+}
+
+@media screen and (min-width: 40em) {
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+ 
+    .card {
+        flex: 0 1 calc(49% - 1em);
+        margin: 5px 5px;
+    }
+}

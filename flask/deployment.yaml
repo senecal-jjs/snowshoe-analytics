@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-odds-machine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-odds-machine-container
+  template:
+    metadata:
+      labels:
+        app: service-odds-machine-container
+    spec:
+      containers:
+        - name: service-odds-machine
+          image: gcr.io/ornate-producer-263403/service-odds-machine:latest
+          ports: 
+            - containerPort: 5000
+          env:
+            - name: REDIS_HOST
+              value: redis-master

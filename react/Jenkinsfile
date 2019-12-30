@@ -1,0 +1,47 @@
+pipeline {
+    environment {
+        DOCKER = credentials('docker-hub')
+    }
+    agent any
+        stages {
+            stage('Build') {
+                steps {
+                    sh 'docker build -f Dockerfile \
+                    -t frontend-odds-machine:latest .'
+                }
+                post {
+                    failure {
+                        echo 'This build has failed. See logs for details.'
+                    }
+                }
+            }
+            stage('Image Push') {
+                when {
+                    branch 'master'
+                }
+                steps {
+                    retry(3) {
+                        timeout(time:10, unit: 'MINUTES') {
+                            sh 'docker login --username $DOCKER_USR --password $DOCKER_PSW'
+                            sh 'docker tag frontend-odds-machine:latest ace149/frontend-odds-machine:latest'
+                            sh 'docker push ace149/frontend-odds-machine:latest'
+                            sh 'docker save ace149/frontend-odds-machine:latest | gzip > frontend-odds-machine-prod-golden.tar.gz'
+                        }
+                    }
+                    echo 'This is the Deploy Stage'
+                }
+            }
+            stage('Deploy') {
+                when {
+                    branch 'master'
+                }
+                steps {
+                    kubernetesDeploy(
+                        kubeconfigId: 'linode-cluster',
+                        configs: 'deployment.yaml',
+                        enableConfigSubstitution: true
+                    )
+                }
+            }
+        }
+    }
