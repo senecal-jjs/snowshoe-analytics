@@ -1,4 +1,4 @@
 FROM nginx 
 
-COPY nginx.conf /etc/nginx/nginx.conf 
+COPY init.conf /etc/nginx/nginx.conf 
 
