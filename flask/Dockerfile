@@ -14,6 +14,7 @@ COPY run.py config.py boot.sh ./
 RUN chmod +x boot.sh
 
 ENV FLASK_APP microblog.py
+ENV REDIS_HOST 'redis'
 
 RUN chown -R microblog:microblog ./
 USER microblog
