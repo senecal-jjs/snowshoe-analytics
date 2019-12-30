@@ -4,8 +4,8 @@ services:
   flaskapp:
     build: ./flask
     restart: always
-    expose:
-      - "5000"
+    ports:
+      - "5000:5000"
     volumes:
       - ./flask:/home/flask/app/web
     depends_on:
@@ -50,3 +50,7 @@ services:
     restart: always
     expose:
       - "80"
+
+networks:    
+    webappnetwork:        
+        driver: bridge
