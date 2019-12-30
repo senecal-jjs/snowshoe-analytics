@@ -55,7 +55,7 @@ export default class SportingEvent extends React.Component {
         }
 
         this.updateAlpha = this.updateAlpha.bind(this)
-        this.endpoint = ((process.env.NODE_ENV === 'production') ? 'http://localhost:5000' : 'http://localhost:5000')
+        this.endpoint = ((process.env.NODE_ENV === 'production') ? 'http://flaskapp:5000' : 'http://localhost:5000')
     }
 
     updateAlpha(alpha) {
