@@ -7,6 +7,10 @@ export const H1 = styled.h1`
     font-family:'Play', sans-serif;
 `;
 
+export const H2 = styled.h2`
+    font-family:'Play', sans-serif;
+`;
+
 function SportsNav ({selected, onUpdateSport}) {
     const sports = ['NBA', 'NFL', 'Premier League']
     return (
@@ -49,6 +53,7 @@ export default class Sport extends React.Component {
             <React.Fragment>
                 <div>
                     <H1>Snowshoe Analytics</H1>
+                    <H2>Due to the corona virus outbreak many sporting events are currently canceled.</H2>
                 </div>
                 <SportsNav selected={selectedSport} onUpdateSport={this.updateSport} />
                 <SportingEvent selectedSport={this.state.selectedSport} />
